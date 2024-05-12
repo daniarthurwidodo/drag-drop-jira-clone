@@ -15,13 +15,13 @@ import {
 })
 export class AppComponent {
   title = 'drag-drop-jira-clone';
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
 
+  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
   done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
 
-  drop(event: CdkDragDrop<string[]>) {
-    console.log(event.container.data, event.previousIndex, event.currentIndex);
+  public newTodo: any;
 
+  drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -32,9 +32,15 @@ export class AppComponent {
         event.currentIndex,
       );
     }
-    if(event)
+    if(event) {
+      // send to server
+    }
     console.log(this.todo, this.done);
 
+  }
+
+  addTodo(){
+    this.todo.push(this.newTodo)
   }
 
 }
